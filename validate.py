@@ -27,9 +27,10 @@ def validate(c):
   string(c['links'],k,2048)
   if not v: continue
   if k=='support_email': need(re.fullmatch(r'[^\s@]+@[^\s@]+\.[A-Za-z]{2,}',v),'invalid support email'); continue
+  if k in ('rate','share'): need(store_url(v,'galaxy_store') or store_url(v,'google_play'),'package-specific store link required')
   if v.startswith(('samsungapps:','market:')): need(store_url(v,'galaxy_store' if v.startswith('samsungapps:') else 'google_play'),'wrong app link'); continue
   u=urlparse(v); h=(u.hostname or '').lower()
-  need(u.scheme=='https' and '.' in h and not re.fullmatch(r'[\d.]+',h) and not h.endswith(('.local','.localhost')) and u.username is None and u.port in (None,443) and not re.search(r'\.(apk|apks|aab|xapk|dex|jar|so)$',u.path,re.I),'unsafe link '+k)
+  need(u.scheme=='https' and '.' in h and not re.fullmatch(r'[\d.]+',h) and not h.endswith(('.local','.localhost','.internal')) and u.username is None and u.port in (None,443) and not re.search(r'\.(apk|apks|aab|xapk|dex|jar|so|exe|sh)(?:/.*)?',u.path,re.I),'unsafe link '+k)
  a=c['ads']; boolean(a,'enabled'); boolean(a,'production_enabled'); string(a,'app_id',100)
  need(not a['app_id'] or re.fullmatch(r'ca-app-pub-\d{16}~\d{10}',a['app_id']),'app id syntax')
  integer(a,'global_cooldown_seconds',30,86400); integer(a,'max_fullscreen_per_session',0,20)
@@ -37,7 +38,7 @@ def validate(c):
  expected={n for group in [['banner_'+x for x in ['main','locations','units','widgets','features','notifications','hourly','daily']],['native_'+x for x in ['weather','exit','hourly','daily']],['interstitial_splash','interstitial_navigation','app_open_foreground']] for n in group}
  need(set(a['placements'])==expected,'15 known placement keys are required')
  for key,p in a['placements'].items():
-  boolean(p,'enabled'); need(p['format'] in a['formats'],'format')
+  boolean(p,'enabled'); need(p['format']==('app_open' if key.startswith('app_open_') else key.split('_')[0]),'placement format')
   string(p,'unit_id',100); need(not p['unit_id'] or re.fullmatch(r'ca-app-pub-\d{16}/\d{10}',p['unit_id']),'unit id syntax')
   integer(p,'every_n_actions',1,100); integer(p,'min_interval_seconds',120 if p['format']=='app_open' else 60,86400)
   integer(p,'max_per_session',0,50); integer(p,'max_per_day',0,100); integer(p,'first_session_delay_seconds',0,3600)

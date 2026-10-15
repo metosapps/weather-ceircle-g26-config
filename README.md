@@ -6,7 +6,7 @@ Edit **config.json**, validate it with `python3 validate.py config.json`, increa
 
 ## Ads
 
-Production ads start disabled. QA APKs always use official Google sample units, even when production unit IDs are entered here. Production requires a separately signed release with this package's verified AdMob App ID, matching `ads.app_id`, plus `ads.production_enabled: true`. The manifest App ID cannot be changed remotely. Do not reuse another app's IDs.
+Production ads start disabled. QA APKs always use official Google sample units, even when production unit IDs are entered here. Production requires a separately signed release with this package's verified AdMob App ID, matching `ads.app_id`, plus `ads.production_enabled: true`. The manifest App ID cannot be changed remotely. Release builds require `WEATHER_ADMOB_APP_ID` explicitly; QA builds use the sample App ID. Do not reuse another app's IDs.
 
 | Field | Effect |
 | --- | --- |
