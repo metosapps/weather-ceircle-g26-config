@@ -49,6 +49,20 @@ Changing accepted config invalidates ad inventory. Disabling ads removes active 
 
 The ad switches govern the managed app's requests and display. They do not promise to stop every network request from all bundled SDKs. Standalone legacy ad startup and loaders are disabled; the managed Google ad initializer runs only after its eligibility checks pass.
 
+## Samsung Galaxy IAP (APK v19+)
+
+Samsung IAP SDK 6.5.2 is compiled into v19. The Premium menu supports weekly, monthly, yearly subscriptions and a lifetime ad-removal item. Product IDs have **not been created in Seller Portal yet**, so `iap.enabled` remains false and `iap.products` is empty. The app does not invent prices or fake successful purchases.
+
+Set `iap.products` to the actual IDs registered under **app.weather.usa.forecast.g26galaxy**. Each entry has exactly these required values: `id` (the real Samsung Product ID), `type` (`subscription` or `lifetime`), and `enabled` (boolean). Weekly/monthly/yearly periods and localized prices are read from Samsung's catalog, not from this JSON. Up to eight products are supported. Keep retired IDs in the list with `enabled: false` so they remain restorable. Do not copy another application's IDs.
+
+`iap.enabled` and `kill_switches.iap_enabled` control **new purchases**. Neither switch cancels a paid entitlement or disables Restore. Turning ads off does not change a user's ownership. Purchase/Restore dialogs and verification pause ads; verified Premium suppresses all managed formats even if remote ads are enabled later. Ad removal does not change the legacy weather-provider plan or forecast limits.
+
+The app queries Galaxy Store ownership on launch when configured products or saved grants exist, and on explicit Restore. API errors preserve verified local ownership. Successful complete ownership queries reconcile it; expired subscriptions stop granting ad removal. Receipt validation binds the package, product, payment and compiled TEST/PRODUCTION mode to Samsung's fixed HTTPS receipt endpoint. Durable purchases are acknowledged and never consumed. Acknowledgment failure preserves the verified grant and retries at later ownership checks. No custom verification backend or server notifications have been deployed.
+
+QA builds use Samsung **TEST** mode; production builds use **PRODUCTION** mode. The mode cannot be changed remotely. These environments use different private entitlement caches, excluded from backup/device transfer. For real testing, register this package/signing certificate and the four products in Seller Portal, configure licensed Samsung testers, and follow the current Samsung test workflow. Beta-installed testing requires a production-mode build and an eligible licensed tester; the debug QA APK is not a Galaxy Store release. No real purchase, renewal, refund, cancellation or paid-account Restore has been demonstrated yet.
+
+See [SamsungIAP-SETUP.md](SamsungIAP-SETUP.md) for the product setup checklist.
+
 ## Links, legal pages, support
 
 `links.privacy_policy`, `terms`, `help`, `website`, `support_email`, `rate`, and `share` control app-owned destinations. Contact for this app: **ahmetefeerdal3@gmail.com**. The navigation menu includes **Help & legal** with offline Privacy Policy, Terms and Help, plus an **Open online** action using the current remote URL.

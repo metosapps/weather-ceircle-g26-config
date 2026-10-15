@@ -19,6 +19,15 @@ def validate(c):
  boolean(c['global'],'maintenance_mode'); string(c['global'],'maintenance_message',1000)
  for k,v in c['features'].items(): boolean(c['features'],k)
  boolean(c['kill_switches'],'ads_enabled')
+ if 'iap_enabled' in c['kill_switches']: boolean(c['kill_switches'],'iap_enabled')
+ if 'iap' in c:
+  iap=c['iap']; need(type(iap) is dict,'iap must be object'); boolean(iap,'enabled')
+  need(type(iap.get('products')) is list and len(iap['products'])<=8,'iap products must be array of at most 8')
+  ids=set()
+  for product in iap['products']:
+   need(type(product) is dict,'iap product object'); string(product,'id',128)
+   need(re.fullmatch(r'[A-Za-z0-9._-]{1,128}',product['id']) and product['id'] not in ids,'invalid or duplicate iap id'); ids.add(product['id'])
+   need(product.get('type') in ('lifetime','subscription'),'invalid iap type'); boolean(product,'enabled')
  for store in ['galaxy_store','google_play']:
   s=c['android'][store]
   integer(s,'min_supported_version_code',1,2147483647); integer(s,'latest_version_code',s['min_supported_version_code'],2147483647)

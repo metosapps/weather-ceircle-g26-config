@@ -2,8 +2,8 @@
   "schema_version": 1,
   "package": "app.weather.usa.forecast.g26galaxy",
   "store": "galaxy_store",
-  "config_version": 8,
-  "revision": "2026-10-15.8",
+  "config_version": 9,
+  "revision": "2026-10-15.9",
   "refresh_seconds": 300,
   "max_cache_age_seconds": 259200,
   "global": {
@@ -13,13 +13,13 @@
   "android": {
     "galaxy_store": {
       "min_supported_version_code": 1,
-      "latest_version_code": 18,
+      "latest_version_code": 19,
       "update_mode": "none",
       "update_url": "samsungapps://ProductDetail/app.weather.usa.forecast.g26galaxy"
     },
     "google_play": {
       "min_supported_version_code": 1,
-      "latest_version_code": 18,
+      "latest_version_code": 19,
       "update_mode": "none",
       "update_url": "https://play.google.com/store/apps/details?id=app.weather.usa.forecast.g26galaxy"
     }
@@ -35,7 +35,8 @@
   },
   "features": {},
   "kill_switches": {
-    "ads_enabled": true
+    "ads_enabled": true,
+    "iap_enabled": true
   },
   "ads": {
     "enabled": false,
@@ -217,5 +218,9 @@
         "first_session_delay_seconds": 30
       }
     }
+  },
+  "iap": {
+    "enabled": false,
+    "products": []
   }
 }
