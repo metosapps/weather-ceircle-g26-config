@@ -2,13 +2,13 @@
   "schema_version": 1,
   "package": "app.weather.usa.forecast.g26galaxy",
   "store": "galaxy_store",
-  "config_version": 6,
-  "revision": "2026-10-15.6-maintenance-qa",
-  "refresh_seconds": 60,
+  "config_version": 7,
+  "revision": "2026-10-15.7",
+  "refresh_seconds": 300,
   "max_cache_age_seconds": 259200,
   "global": {
-    "maintenance_mode": true,
-    "maintenance_message": "Temporary remote-control verification. Normal weather access will resume shortly."
+    "maintenance_mode": false,
+    "maintenance_message": "Weather is temporarily unavailable. Please try again shortly."
   },
   "android": {
     "galaxy_store": {
@@ -35,7 +35,7 @@
   },
   "features": {},
   "kill_switches": {
-    "ads_enabled": false
+    "ads_enabled": true
   },
   "ads": {
     "enabled": true,
