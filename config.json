@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "package": "app.weather.usa.forecast.g26galaxy",
+  "store": "galaxy_store",
+  "config_version": 1,
+  "revision": "2026-10-15.1",
+  "refresh_seconds": 300,
+  "max_cache_age_seconds": 259200,
+  "global": {
+    "maintenance_mode": false,
+    "maintenance_message": "Weather is temporarily unavailable. Please try again shortly."
+  },
+  "android": {
+    "galaxy_store": {
+      "min_supported_version_code": 1,
+      "latest_version_code": 18,
+      "update_mode": "none",
+      "update_url": "samsungapps://ProductDetail/app.weather.usa.forecast.g26galaxy"
+    },
+    "google_play": {
+      "min_supported_version_code": 1,
+      "latest_version_code": 18,
+      "update_mode": "none",
+      "update_url": "https://play.google.com/store/apps/details?id=app.weather.usa.forecast.g26galaxy"
+    }
+  },
+  "links": {
+    "privacy_policy": "https://metosapps.github.io/weather-ceircle-g26-config/privacy.html",
+    "terms": "https://metosapps.github.io/weather-ceircle-g26-config/terms.html",
+    "support_email": "ahmetefeerdal3@gmail.com",
+    "website": "https://metosapps.github.io/weather-ceircle-g26-config/",
+    "help": "https://metosapps.github.io/weather-ceircle-g26-config/help.html",
+    "rate": "samsungapps://ProductDetail/app.weather.usa.forecast.g26galaxy",
+    "share": "https://galaxystore.samsung.com/detail/app.weather.usa.forecast.g26galaxy"
+  },
+  "features": {},
+  "kill_switches": {
+    "ads_enabled": true
+  },
+  "ads": {
+    "enabled": true,
+    "production_enabled": false,
+    "app_id": "",
+    "global_cooldown_seconds": 90,
+    "max_fullscreen_per_session": 5,
+    "formats": {
+      "banner": {
+        "enabled": true
+      },
+      "native": {
+        "enabled": true
+      },
+      "interstitial": {
+        "enabled": true
+      },
+      "app_open": {
+        "enabled": false
+      }
+    },
+    "placements": {
+      "banner_main": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_locations": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_units": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_widgets": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_features": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_notifications": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_hourly": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "banner_daily": {
+        "format": "banner",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0,
+        "collapsible": false
+      },
+      "native_weather": {
+        "format": "native",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0
+      },
+      "native_exit": {
+        "format": "native",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0
+      },
+      "native_hourly": {
+        "format": "native",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0
+      },
+      "native_daily": {
+        "format": "native",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 60,
+        "max_per_session": 20,
+        "max_per_day": 50,
+        "first_session_delay_seconds": 0
+      },
+      "interstitial_splash": {
+        "format": "interstitial",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 90,
+        "max_per_session": 1,
+        "max_per_day": 2,
+        "first_session_delay_seconds": 0
+      },
+      "interstitial_navigation": {
+        "format": "interstitial",
+        "enabled": true,
+        "unit_id": "",
+        "every_n_actions": 3,
+        "min_interval_seconds": 90,
+        "max_per_session": 3,
+        "max_per_day": 10,
+        "first_session_delay_seconds": 0
+      },
+      "app_open_foreground": {
+        "format": "app_open",
+        "enabled": false,
+        "unit_id": "",
+        "every_n_actions": 1,
+        "min_interval_seconds": 180,
+        "max_per_session": 3,
+        "max_per_day": 10,
+        "first_session_delay_seconds": 30
+      }
+    }
+  }
+}
