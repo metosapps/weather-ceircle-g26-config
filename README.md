@@ -2,7 +2,11 @@
 
 This repository controls only `app.weather.usa.forecast.g26galaxy`, Galaxy Store variant. The APK must include the v18 remote-control implementation or a later compatible version. Earlier APKs cannot acquire this behavior from JSON alone.
 
-Edit **config.json**, validate it with `python3 validate.py config.json`, increase `config_version`, update `revision`, and commit. The app fetches the raw `main/config.json` over HTTPS at launch and periodically while foregrounded. Default refresh is 300 seconds; GitHub cache propagation can add delay. Accepted settings persist across restarts. A malformed response, wrong package/store, network failure or older config version never replaces the last good snapshot. Cache expires after 72 hours; the bundled fallback disables ads and keeps the app usable.
+Edit **config.json**, validate it with `python3 validate.py config.json`, increase `config_version`, update `revision`, and commit. The app fetches the raw `main/config.json` over HTTPS at launch and periodically while foregrounded. Default refresh is 300 seconds. GitHub's raw endpoint can still return a previous revision for several minutes after a commit, even with the app's minute-based query parameter; publication is not instant delivery. Accepted settings persist across restarts. A malformed response, wrong package/store, network failure or older config version never replaces a still-fresh last good snapshot. Default cache expiry is 72 hours (`max_cache_age_seconds` permits 1 hour to 7 days); after expiry the bundled fallback disables ads and clears maintenance/update blocking. Offline devices cannot receive a new switch until a successful refresh.
+
+Repository: <https://github.com/metosapps/weather-ceircle-g26-config>  
+App endpoint: <https://raw.githubusercontent.com/metosapps/weather-ceircle-g26-config/main/config.json>  
+Public website: <https://metosapps.github.io/weather-ceircle-g26-config/>
 
 ## Ads
 
@@ -30,6 +34,8 @@ Default navigation interstitial: every 3 eligible transitions, at least 90 secon
 
 A session is the lifetime of the app process, not each foreground resume. Hard minimum spacing: 60 seconds per banner/native/interstitial placement, 120 seconds app-open, 30 seconds shared full-screen cooldown. Config cannot override Pro, consent, lifecycle, active full-screen safety or update/maintenance gates. Counts come from actual SDK show/impression callbacks. Failed loads and canceled “Showing ads” notices are not impressions.
 
+Inline loads wait for a resumed, focused owner and a visible placement container; cached offscreen weather pages and prefetched list rows do not qualify merely because they are attached. A placement reserves at most one pending impression before starting an SDK load, so multiple page instances cannot load simultaneously through the same placement. Requests blocked only by visibility, a pending reservation or cooldown remain eligible for later evaluation. Hide/detach/stop before the impression, failure and config invalidation release the reservation; an actual late SDK impression still counts once. This pacing does not add full-screen timer opportunities.
+
 ### Placement map
 
 - Banners: `banner_main`, `banner_locations`, `banner_units`, `banner_widgets`, `banner_features`, `banner_notifications`, `banner_hourly`, `banner_daily`.
@@ -41,6 +47,8 @@ Rewarded SDK classes are present in the original APK, but there is no active use
 
 Changing accepted config invalidates ad inventory. Disabling ads removes active inline ad views and rejects late load callbacks and pending full-screen shows. An SDK full-screen ad already visible is allowed to finish normally. Turning ads back on takes effect at the next eligible app placement.
 
+The ad switches govern the managed app's requests and display. They do not promise to stop every network request from all bundled SDKs. Standalone legacy ad startup and loaders are disabled; the managed Google ad initializer runs only after its eligibility checks pass.
+
 ## Links, legal pages, support
 
 `links.privacy_policy`, `terms`, `help`, `website`, `support_email`, `rate`, and `share` control app-owned destinations. Contact for this app: **ahmetefeerdal3@gmail.com**. The navigation menu includes **Help & legal** with offline Privacy Policy, Terms and Help, plus an **Open online** action using the current remote URL.
@@ -51,7 +59,7 @@ Web destinations must use HTTPS without credentials or executable file targets. 
 
 `global.maintenance_mode` blocks entry with `maintenance_message`, Retry, Support and Exit. Turning it off resumes normal entry. A gate never launches a browser in the background.
 
-Each `android.galaxy_store` / `android.google_play` section has `min_supported_version_code`, `latest_version_code`, `update_mode` (`none`, `soft`, `force`), and a package-bound `update_url`. Install source selects the store; sideloaded builds use Galaxy Store. `soft` offers Later; `force` or an installed version below minimum requires updating. Only enable forced updates after the new version is available to the affected users. No APK is downloaded or installed by this config.
+Each `android.galaxy_store` / `android.google_play` section has `min_supported_version_code`, `latest_version_code`, `update_mode` (`none`, `soft`, `force`), and a package-bound `update_url`. Google Play installs use the Play section; other installs, including sideloaded builds, use Galaxy Store. An installed version below minimum always requires updating. Otherwise `soft` or `force` applies only when latest is newer than installed; `soft` offers Later. Only enable forced updates after the new version is available to the affected users. No APK is downloaded or installed by this config.
 
 ## Safe edits and rollback
 
