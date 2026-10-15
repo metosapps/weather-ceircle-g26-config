@@ -2,8 +2,8 @@
   "schema_version": 1,
   "package": "app.weather.usa.forecast.g26galaxy",
   "store": "galaxy_store",
-  "config_version": 7,
-  "revision": "2026-10-15.7",
+  "config_version": 8,
+  "revision": "2026-10-15.8",
   "refresh_seconds": 300,
   "max_cache_age_seconds": 259200,
   "global": {
@@ -38,7 +38,7 @@
     "ads_enabled": true
   },
   "ads": {
-    "enabled": true,
+    "enabled": false,
     "production_enabled": false,
     "app_id": "",
     "global_cooldown_seconds": 90,
