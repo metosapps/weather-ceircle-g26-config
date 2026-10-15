@@ -2,9 +2,9 @@
   "schema_version": 1,
   "package": "app.weather.usa.forecast.g26galaxy",
   "store": "galaxy_store",
-  "config_version": 1,
-  "revision": "2026-10-15.1",
-  "refresh_seconds": 300,
+  "config_version": 2,
+  "revision": "2026-10-15.2-qa",
+  "refresh_seconds": 60,
   "max_cache_age_seconds": 259200,
   "global": {
     "maintenance_mode": false,
